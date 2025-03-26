@@ -5,9 +5,44 @@ using namespace std;
 
 // Global variable definition
 
-int i, IntInputNum, IntRandomNumber, IntPreviousNumber, IntOutcome;
+int IntInputNum, IntRandomNumber, IntPreviousNumber, IntOutcome;
 char CharChoice;
 
+
+// Function definition
+
+void EntryValidation();
+void RandomNumber();
+void PlayerWinnerCheck();
+void PlayerLossCheck();
+void InputGuess();
+void SameNumber();
+
+int main()  {
+    srand(time(0));
+
+    bool running = true;
+
+    RandomNumber(); // Generate the random number
+
+    cout << "\nWelcome! In this game you will have to guess whether the next number will be higher or lower than your current number \n(Max Number is 100)";
+    cout << "\nYour number is: " << IntRandomNumber;
+
+    while(running)  {                               /*Cycles through the functions defined above, if the player wins then the loop will continue, fail breaks the loop */
+        IntPreviousNumber = IntRandomNumber;
+        RandomNumber();
+        InputGuess();
+        EntryValidation();
+        PlayerLossCheck();
+        if (IntOutcome = 0)  {
+            running = false;
+        } 
+        PlayerWinnerCheck();
+        if (IntOutcome = 1)  {
+            running = true;
+        }
+    }
+}
 
 // Function definition
 
@@ -51,32 +86,4 @@ void SameNumber()  {
         cout << "\nCorrect! " << IntRandomNumber << " is the same as: " << IntPreviousNumber;
         IntOutcome = 1;
     }
-}
-
-int main()  {
-    srand(time(0));
-
-    bool running = true;
-
-    RandomNumber(); // Generate the random number
-
-    cout << "\nWelcome! In this game you will have to guess whether the next number will be higher or lower than your current number \n(Max Number is 100)";
-    cout << "\nYour number is: " << IntRandomNumber;
-
-    while(running)  {                               /*Cycles through the functions defined above, if the player wins then the loop will continue, fail breaks the loop */
-        IntPreviousNumber = IntRandomNumber;
-        RandomNumber();
-        cout << "\n" << IntRandomNumber;
-        InputGuess();
-        EntryValidation();
-        PlayerLossCheck();
-        if (IntOutcome = 0)  {
-            running = false;
-        } 
-        PlayerWinnerCheck();
-        if (IntOutcome = 1)  {
-            running = true;
-        }
-    }
-    
 }
